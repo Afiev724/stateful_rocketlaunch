@@ -25,6 +25,17 @@ class CounterWidget extends StatefulWidget {
 class _CounterWidgetState extends State<CounterWidget> {
   int _counter = 0;
 
+  // Helper function to determine color based on counter value
+  Color _getCountdownColor() {
+    if (_counter == 0) {
+      return Colors.red;
+    } else if (_counter > 0 && _counter <= 50) {
+      return Colors.orange;
+    } else {
+      return Colors.green;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +44,10 @@ class _CounterWidgetState extends State<CounterWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('$_counter', style: const TextStyle(fontSize: 50)),
+            Text(
+              _counter == 100 ? 'LIFTOFF!' : '$_counter',
+              style: TextStyle(fontSize: 50, color: _getCountdownColor()),
+            ),
             Slider(
               min: 0,
               max: 100,
