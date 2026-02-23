@@ -25,12 +25,6 @@ class CounterWidget extends StatefulWidget {
 class _CounterWidgetState extends State<CounterWidget> {
   int _counter = 0;
 
-  Color getColor() {
-    if (_counter == 0) return Colors.red;
-    if (_counter <= 50) return Colors.orange;
-    return Colors.green;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,14 +33,7 @@ class _CounterWidgetState extends State<CounterWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              color: Colors.blue,
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                _counter == 100 ? 'LIFTOFF!' : '$_counter',
-                style: TextStyle(fontSize: 50, color: getColor()),
-              ),
-            ),
+            Text('$_counter', style: const TextStyle(fontSize: 50)),
             Slider(
               min: 0,
               max: 100,
@@ -56,8 +43,6 @@ class _CounterWidgetState extends State<CounterWidget> {
                   _counter = value.toInt();
                 });
               },
-              activeColor: Colors.blue,
-              inactiveColor: Colors.red,
             ),
             ElevatedButton(
               onPressed: () {
